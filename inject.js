@@ -14,13 +14,36 @@ strategies.gitlab = {
 `,
   expanderSelector: "button",
   insertExpander: (anchor, expander) => anchor.appendChild(expander),
-  getBoardInner: (button) => button.parentNode.parentNode.parentNode,
-  getBoard: (boardInner) => boardInner.parentNode,
+  getBoard: (button) => button.parentNode.parentNode.parentNode.parentNode,
+  getCardList: (board) => $("ul", board),
+  getIcon: (button) => $("i", button),
+  isCompressed: (icon) => icon.classList.contains("fa-compress"),
   cardMinWidth: "374px",
+  expandClass: "fa-expand",
+  compressClass: "fa-compress",
 };
 
 strategies.github = {};
-strategies.trello = {};
+
+strategies.trello = {
+  anchorSelector: ".js-card-templates-button.card-templates-button-container.dark-background-hover",
+  buttonInnerHtml: `
+      <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
+        <a class="_2arBFfwXVxA0AM" role="button" href="#">
+          <span class="icon-sm icon-add dark-background-hover"></span>
+        </a>
+      </div>
+`,
+  expanderSelector: ".expander-extension",
+  insertExpander: (anchor, expander) => anchor.parentNode.insertBefore(expander, anchor),
+  getBoard: (button) => button.parentNode.parentNode.parentNode,
+  getCardList: (board) => $(".list-cards", board),
+  getIcon: (button) => $("span", button),
+  isCompressed: (icon) => icon.classList.contains("icon-remove"),
+  cardMinWidth: "248px",
+  expandClass: "icon-add",
+  compressClass: "icon-remove",
+};
 
 let strategy;
 switch (location.host) {
@@ -60,17 +83,17 @@ window.onload = () => {
     strategy.insertExpander(anchor, expander);
 
     expander.onclick = function () {
-      let boardInner = strategy.getBoardInner(this);
-      let board = strategy.getBoard(boardInner);
-      let cardList = $("ul", boardInner);
-      let icon = $("i", this);
+      let board = strategy.getBoard(this);
+      let cardList = strategy.getCardList(board);
+      let icon = strategy.getIcon(this);
 
-      if (icon.classList.contains("fa-compress")) {
+      if (strategy.isCompressed(icon)) {
         // compress
         this.setAttribute("title", "Expand list");
 
-        cardList.style.display = "block";
         board.style.width = "";
+
+        cardList.style.display = "block";
       } else {
         // expand
         this.setAttribute("title", "Compress list");
@@ -90,8 +113,8 @@ window.onload = () => {
         });
       }
 
-      icon.classList.toggle("fa-expand");
-      icon.classList.toggle("fa-compress");
+      icon.classList.toggle(strategy.expandClass);
+      icon.classList.toggle(strategy.compressClass);
     };
   });
 };
