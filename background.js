@@ -1,4 +1,3 @@
-const EXPAND = "↔️";
 const ALLOWED_DOMAINS = [
   "https://gitlab.com/",
   "https://github.com/",
