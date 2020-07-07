@@ -12,8 +12,11 @@
   "manifest_version": 2,
   "permissions": [
     "tabs",
-    "bookmarks",
-    "http://www.gitlab.com/",
-    "unlimitedStorage"
+    "https://www.gitlab.com/",
+    "https://gitlab.com/",
+    "https://www.github.com/",
+    "https://github.com/",
+    "https://www.trello.com/",
+    "https://trello.com/"
   ]
 }
