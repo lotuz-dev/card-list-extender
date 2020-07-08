@@ -34,13 +34,13 @@ strategies.github = {
 `,
   expanderSelector: "button",
   insertExpander: (anchor, expander) => anchor.appendChild(expander),
-  getBoard: (button) => button.parentNode.parentNode.parentNode.parentNode,
+  getBoard: (button) => button.parentNode.parentNode.parentNode,
   getCardList: (board) => $("div", board),
   getIcon: (button) => $("svg", button),
-  isCompressed: (icon) => icon.classList.contains("icon-remove"),
+  isCompressed: (icon) => icon.classList.contains("octicon-plus"),
   cardMinWidth: "335px",
   expandClass: "octicon-plus",
-  compressClass: "icon-remove",
+  compressClass: "octicon-minus",
 };
 
 strategies.trello = {
