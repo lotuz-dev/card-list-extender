@@ -17,18 +17,18 @@ strategies.gitlab = {
         type="button" 
         data-placement="bottom" 
       >
-        <i aria-hidden="true" data-hidden="true" class="fa fa-expand" style="width: 16px; height: 16px;"></i>
+        <span style="width: 16px; height: 16px;">
+        ${EXPAND_SVG}
+        </span>
       </button>
 `,
   expanderSelector: "button",
   insertExpander: (anchor, expander) => anchor.appendChild(expander),
   getBoard: (button) => button.parentNode.parentNode.parentNode.parentNode,
   getCardList: (board) => $("ul", board),
-  getIcon: (button) => $("i", button),
-  isCompressed: (icon) => icon.classList.contains("fa-compress"),
+  getIcon: (button) => $("span", button),
+  isCompressed: (icon) => icon.classList.contains(""),
   cardMinWidth: "374px",
-  expandClass: "fa-expand",
-  compressClass: "fa-compress",
 };
 
 strategies.github = {
@@ -36,20 +36,18 @@ strategies.github = {
   anchorSelector: "div.hide-sm.position-relative.p-sm-2",
   buttonInnerHtml: `
   <button type="button">
-    <svg class="octicon octicon-plus" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
-      <path fill-rule="evenodd" d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"></path>
-    </svg>
+    <span style="padding:10px 0 5px 0;">
+    ${EXPAND_SVG}
+    </span>
   </button>
 `,
   expanderSelector: "button",
   insertExpander: (anchor, expander) => anchor.appendChild(expander),
   getBoard: (button) => button.parentNode.parentNode.parentNode,
   getCardList: (board) => $(".js-project-column-cards", board),
-  getIcon: (button) => $("svg", button),
-  isCompressed: (icon) => icon.classList.contains("octicon-plus"),
+  getIcon: (button) => $("span", button),
+  isCompressed: (icon) => icon.classList.contains(""),
   cardMinWidth: "335px",
-  expandClass: "octicon-plus",
-  compressClass: "octicon-minus",
 };
 
 strategies.trello = {
@@ -59,7 +57,7 @@ strategies.trello = {
   buttonInnerHtml: `
    <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
     <a class="_2arBFfwXVxA0AM" role="button" href="#">
-      <span class="icon-sm icon-toExpand dark-background-hover">
+      <span class="icon-sm icon-toExpand dark-background-hover" style="padding: 5px 0 5px 0;">
         ${EXPAND_SVG}
       </span>
     </a>
@@ -71,10 +69,8 @@ strategies.trello = {
   getBoard: (button) => button.parentNode.parentNode.parentNode,
   getCardList: (board) => $(".list-cards", board),
   getIcon: (button) => $("span", button),
-  isCompressed: (icon) => icon.classList.contains("icon-remove"),
+  isCompressed: (icon) => icon.classList.contains(""),
   cardMinWidth: "248px",
-  expandClass: "icon-toExpand",
-  compressClass: "icon-toCompress",
 };
 
 let strategy;
@@ -145,6 +141,7 @@ window.onload = () => {
         });
 
         icon.innerHTML = EXPAND_SVG;
+        
       } else {
         // expand
         this.setAttribute("title", "Compress list");
