@@ -23,20 +23,41 @@ strategies.gitlab = {
   compressClass: "fa-compress",
 };
 
-strategies.github = {};
+strategies.github = {
+  anchorSelector: "div.hide-sm.position-relative.p-sm-2",
+  buttonInnerHtml: `
+  <button type="button">
+    <svg class="octicon octicon-plus" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true">
+      <path fill-rule="evenodd" d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"></path>
+    </svg>
+  </button>
+`,
+  expanderSelector: "button",
+  insertExpander: (anchor, expander) => anchor.appendChild(expander),
+  getBoard: (button) => button.parentNode.parentNode.parentNode.parentNode,
+  getCardList: (board) => $("div", board),
+  getIcon: (button) => $("svg", button),
+  isCompressed: (icon) => icon.classList.contains("icon-remove"),
+  cardMinWidth: "335px",
+  expandClass: "octicon-plus",
+  compressClass: "icon-remove",
+};
 
 strategies.trello = {
   anchorSelector: ".js-card-templates-button.card-templates-button-container.dark-background-hover",
   buttonInnerHtml: `
-      <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
-        <a class="_2arBFfwXVxA0AM" role="button" href="#">
-          <span class="icon-sm icon-add dark-background-hover"></span>
-        </a>
-      </div>
+  <button 
+    title="Expand list" 
+    class="btn issue-count-badge-add-button no-drag btn-default btn-md btn-icon gl-button has-tooltip ml-1" 
+    type="button" 
+    data-placement="bottom">
+      <i aria-hidden="true" data-hidden="true" class="fa fa-expand" style="width: 16px; height: 16px;"></i>
+  </button>
+  
 `,
   expanderSelector: ".expander-extension",
   insertExpander: (anchor, expander) => anchor.parentNode.insertBefore(expander, anchor),
-  getBoard: (button) => button.parentNode.parentNode.parentNode,
+  getBoard: (button) => button.parentNode.parentNode.parentNode.parentNode,
   getCardList: (board) => $(".list-cards", board),
   getIcon: (button) => $("span", button),
   isCompressed: (icon) => icon.classList.contains("icon-remove"),
