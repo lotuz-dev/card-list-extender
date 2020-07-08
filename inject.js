@@ -35,7 +35,7 @@ strategies.github = {
   expanderSelector: "button",
   insertExpander: (anchor, expander) => anchor.appendChild(expander),
   getBoard: (button) => button.parentNode.parentNode.parentNode,
-  getCardList: (board) => $("div", board),
+  getCardList: (board) => $(".js-project-column-cards", board),
   getIcon: (button) => $("svg", button),
   isCompressed: (icon) => icon.classList.contains("octicon-plus"),
   cardMinWidth: "335px",
@@ -93,6 +93,12 @@ window.onload = () => {
   if (!strategy) {
     return;
   }
+  $(".project-columns-container").setAttribute("style", `
+    overflow-x: unset!important;
+  `);
+  $(".js-project-columns-container").setAttribute("style", `
+    width: auto!important;
+  `);
 
   let anchors = $$(strategy.anchorSelector);
 
@@ -112,20 +118,33 @@ window.onload = () => {
         // compress
         this.setAttribute("title", "Expand list");
 
-        board.style.width = "";
+        board.setAttribute("style", "");
 
         cardList.style.display = "block";
+        Array.from(cardList.children).forEach(card => {
+          card.setAttribute("style", ``);
+        });
+
       } else {
         // expand
         this.setAttribute("title", "Compress list");
 
-        board.style.width = "100%";
+        board.setAttribute("style", `
+          width: 100vw;
+          max-width: unset;
+          flex: 1 1 100%!important;
+        `);
+
         cardList.style.display = "grid";
         cardList.style[
           "grid-template-columns"
         ] = `repeat(auto-fill, minmax(${strategy.cardMinWidth}, 1fr))`;
         cardList.style["grid-auto-rows"] = "min-content";
         cardList.style["grid-gap"] = "4px";
+
+        Array.from(cardList.children).forEach(card => {
+          card.setAttribute("style", `margin: 0px!important;`);
+        });
 
         cardList.scrollIntoView({
           behavior: "smooth",
