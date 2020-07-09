@@ -60,7 +60,7 @@ window.onload = () => {
     buttonInnerHtml: `
     <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
       <a class="_2arBFfwXVxA0AM" role="button" href="#">
-        <span class="icon-sm icon-toExpand dark-background-hover" style="padding: 5px 0 5px 0;">
+        <span class="icon-sm icon-toExpand dark-background-hover" style=" width: 10px;padding: 5px 0 5px 0;">
           ${EXPAND_SVG}
         </span>
       </a>
