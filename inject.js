@@ -37,7 +37,7 @@ window.onload = () => {
     name: "github",
     anchorSelector: "div.hide-sm.position-relative.p-sm-2",
     buttonInnerHtml: `
-    <button type="button" class="float-right btn-octicon p-1 tooltipped-w hide-sm column-menu-item" style="width: 25px; height: auto; padding: 5px; border: none; background: none;">
+    <button type="button" class="float-right btn-octicon p-1 tooltipped-w hide-sm column-menu-item" style="width: 20px; height: auto; padding: 5px; border: none; background: none;">
       <span>
         ${EXPAND_SVG}
       </span>
@@ -162,7 +162,19 @@ window.onload = () => {
         }else{
           board.setAttribute("style",`width: 100%;`);
         }
-        
+      //github diminuir o icone 
+      // trello diminuit icone garantir que o scroll funcione. 
+      // só o simbolo transparente png
+
+      //o que acontece do site atualizado
+
+      //o que acontece add outra aplicação 
+      // como tirar o if do github
+
+      //melhor codigo repetido do que abstrato para não ficar travado
+      //facil de manutenção
+      //ter mais linhas de codigo não é necessariamente pior
+
         cardList.style.display = "grid";
         cardList.style[
           "grid-template-columns"
