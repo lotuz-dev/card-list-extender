@@ -39,9 +39,9 @@ window.onload = () => {
     name: "github",
     anchorSelector: "div.hide-sm.position-relative.p-sm-2",
     buttonInnerHtml: `
-    <button type="button">
-      <span style="padding:10px 0 5px 0;">
-      ${EXPAND_SVG}
+    <button type="button" class="float-right js-details-target btn-octicon p-1 tooltipped tooltipped-w hide-sm column-menu-item" style="width: 25px; height: auto; padding: 5px; border: none; background: none;">
+      <span>
+        ${EXPAND_SVG}
       </span>
     </button>
   `,
