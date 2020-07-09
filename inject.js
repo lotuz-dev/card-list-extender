@@ -15,10 +15,8 @@ window.onload = () => {
     anchorSelector: "h3.board-title",
     buttonInnerHtml: `
         <button 
-          title="Expand list" 
           class="btn issue-count-badge-add-button no-drag btn-default btn-md btn-icon gl-button has-tooltip ml-1" 
           type="button" 
-          data-placement="bottom" 
         >
           <span style="width: 16px; height: 16px;">
             ${EXPAND_SVG}
@@ -106,6 +104,7 @@ window.onload = () => {
   if (!strategy) {
     return;
   }
+
   if (strategy.name === "github") {
     $(".project-columns-container").setAttribute(
       "style",
@@ -123,7 +122,7 @@ window.onload = () => {
 
   let anchors = $$(strategy.anchorSelector);
 
-  anchors.forEach((anchor, i) => {
+  anchors.forEach((anchor) => {
     let canvas = document.createElement("div");
     canvas.innerHTML = strategy.buttonInnerHtml;
     let expander = $(strategy.expanderSelector, canvas);

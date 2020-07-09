@@ -7,7 +7,8 @@
     "persistent": false
   },
   "browser_action": {
-    "default_title": "Board Extender"
+    "default_title": "Board Extender",
+    "default_icon":"icon-logo-board-extender.png"
   },
   "manifest_version": 2,
   "permissions": [
