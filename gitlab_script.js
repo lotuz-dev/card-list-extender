@@ -90,7 +90,7 @@ window.onload = () => {
           inline: "center",
         });
         icon.innerHTML = COMPRESS_SVG;
-      }
+      } 
 
       icon.classList.toggle(strategy.expandClass);
       icon.classList.toggle(strategy.compressClass);
