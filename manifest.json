@@ -2,22 +2,33 @@
   "name": "Board Extender Browser",
   "description": "This extension will be help you to see better card of the board in full screen.",
   "version": "0.0.1",
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+  "content_scripts":[
+    {
+      "matches": [
+        "https://trello.com/*"
+      ],
+      "js": ["trello_script.js"]
+    },
+    {
+      "matches": [
+        "https://gitlab.com/*"
+      ],
+      "js": ["gitlab_script.js"]
+    },
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "js": ["github_script.js"]
+    }
+
+  ],
   "browser_action": {
     "default_title": "Board Extender",
     "default_icon":"icon-logo-board-extender.png"
   },
   "manifest_version": 2,
   "permissions": [
-    "tabs",
-    "https://www.gitlab.com/",
-    "https://gitlab.com/",
-    "https://www.github.com/",
-    "https://github.com/",
-    "https://www.trello.com/",
-    "https://trello.com/"
+    "activeTab"
   ]
 }
