@@ -6,17 +6,17 @@
     {
       "matches": ["*://*.trello.com/*"],
       "run_at": "document_end",
-      "js": ["board_extender.js", "trello_script.js"]
+      "js": ["trello.js"]
     },
     {
       "matches": ["*://*.gitlab.com/*"],
       "run_at": "document_end",
-      "js": ["board_extender.js", "gitlab_script.js"]
+      "js": ["gitlab.js"]
     },
     {
       "matches": ["*://*.github.com/*"],
       "run_at": "document_end",
-      "js": ["board_extender.js", "github_script.js"]
+      "js": ["github.js"]
     }
   ],
   "browser_action": {

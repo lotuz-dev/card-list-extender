@@ -1,7 +1,13 @@
-window.onload = async () => {
-  const $ = queryOne;
-  const $$ = queryAll;
+import {
+  $,
+  $$,
+  CLASS_EXTENDER_ON,
+  EXPAND_SVG,
+  COMPRESS_SVG,
+  linearBackoff,
+} from "./board_extender.js";
 
+window.onload = async () => {
   const anchorSelector = "div.hide-sm.position-relative.p-sm-2";
 
   const github = {
@@ -10,8 +16,6 @@ window.onload = async () => {
     getBoard: (button) => button.parentNode.parentNode.parentNode,
     getCardList: (board) => $(".js-project-column-cards", board),
     getIcon: (button) => $("span", button),
-    isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
-    compressClass: "icon-toCompress",
     cardMinWidth: "335px",
   };
 
@@ -77,7 +81,7 @@ window.onload = async () => {
               flex: 1 1 100%!important;
             `
         );
-        
+
         cardList.style.display = "grid";
         cardList.style[
           "grid-template-columns"

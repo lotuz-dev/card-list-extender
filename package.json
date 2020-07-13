@@ -1,0 +1,27 @@
+{
+  "name": "lotuz-board-extender",
+  "version": "1.0.0",
+  "description": "A simple extension to add a \"fullscreen\" to lists on kanban boards. Currently it works for: - Gitlab - Github - Trello",
+  "scripts": {
+    "start": "parcel trello.js gitlab.js github.js",
+    "build": "parcel build trello.js gitlab.js github.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:lotuz/projects/031-board-extender-browser-extension.git"
+  },
+  "keywords": [],
+  "author": "lotuz",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
+}

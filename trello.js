@@ -1,7 +1,13 @@
-window.onload = async () => {
-  const $ = queryOne;
-  const $$ = queryAll;
+import {
+  $,
+  $$,
+  CLASS_EXTENDER_ON,
+  EXPAND_SVG,
+  COMPRESS_SVG,
+  linearBackoff,
+} from "./board_extender.js";
 
+window.onload = async () => {
   const anchorSelector =
     ".js-card-templates-button.card-templates-button-container.dark-background-hover";
 
@@ -12,9 +18,6 @@ window.onload = async () => {
     getBoard: (button) => button.parentNode.parentNode.parentNode,
     getCardList: (board) => $(".list-cards", board),
     getIcon: (button) => $("span", button),
-    isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
-    compressClass: "icon-toCompress",
-    expandClass: "icon-toExpand",
     cardMinWidth: "248px",
   };
 
@@ -48,7 +51,7 @@ window.onload = async () => {
       let cardList = trello.getCardList(board);
       let icon = trello.getIcon(this);
 
-      if (trello.isCompressed(icon)) {
+      if (icon.classLis.contains(CLASS_EXTENDER_ON)) {
         // compress
         this.setAttribute("title", "Expand list");
 
@@ -81,8 +84,7 @@ window.onload = async () => {
         icon.innerHTML = COMPRESS_SVG;
       }
 
-      icon.classList.toggle(trello.expandClass);
-      icon.classList.toggle(trello.compressClass);
+      icon.classList.toggle(CLASS_EXTENDER_ON);
     };
   });
 };

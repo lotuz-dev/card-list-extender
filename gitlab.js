@@ -10,8 +10,6 @@ window.onload = async () => {
     getBoard: (button) => button.parentNode.parentNode.parentNode.parentNode,
     getCardList: (board) => $("ul", board),
     getIcon: (button) => $("span", button),
-    isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
-    compressClass: "icon-toCompress",
     cardMinWidth: "374px",
   };
 
@@ -58,7 +56,7 @@ window.onload = async () => {
         // expand
         this.setAttribute("title", "Compress list");
         board.setAttribute("style", `width: 100%;`);
-        
+
         cardList.style.display = "grid";
         cardList.style[
           "grid-template-columns"
