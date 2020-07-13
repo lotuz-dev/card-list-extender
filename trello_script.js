@@ -30,9 +30,9 @@ window.onload = async () => {
     let canvas = document.createElement("div");
 
     canvas.innerHTML = `
-    <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
+    <div style="padding: 5px 0 5px 0;" class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
       <a class="_2arBFfwXVxA0AM" role="button" href="#">
-        <span class="icon-sm icon-toExpand dark-background-hover" style=" width: 10px;padding: 5px 0 5px 0;">
+        <span class="icon-sm icon-toExpand" style=" width: 10px;">
           ${EXPAND_SVG}
         </span>
       </a>
