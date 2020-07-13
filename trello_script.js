@@ -3,17 +3,8 @@ window.onload = async () => {
   const $$ = queryAll;
 
   const anchorSelector = ".js-card-templates-button.card-templates-button-container.dark-background-hover";
-  
+
   const trello = {
-      buttonInnerHtml: `
-    <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
-      <a class="_2arBFfwXVxA0AM" role="button" href="#">
-        <span class="icon-sm icon-toExpand dark-background-hover" style=" width: 10px;padding: 5px 0 5px 0;">
-          ${EXPAND_SVG}
-        </span>
-      </a>
-    </div>
-  `,
       expanderSelector: ".expander-extension",
       insertExpander: (anchor, expander) =>
         anchor.parentNode.insertBefore(expander, anchor),
@@ -36,7 +27,17 @@ window.onload = async () => {
 
   anchors.forEach((anchor) => {
     let canvas = document.createElement("div");
-    canvas.innerHTML = trello.buttonInnerHtml;
+
+    canvas.innerHTML = `
+    <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
+      <a class="_2arBFfwXVxA0AM" role="button" href="#">
+        <span class="icon-sm icon-toExpand dark-background-hover" style=" width: 10px;padding: 5px 0 5px 0;">
+          ${EXPAND_SVG}
+        </span>
+      </a>
+    </div>
+  `;
+
     let expander = $(trello.expanderSelector, canvas);
 
     trello.insertExpander(anchor, expander);
