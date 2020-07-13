@@ -2,19 +2,20 @@ window.onload = async () => {
   const $ = queryOne;
   const $$ = queryAll;
 
-  const anchorSelector = ".js-card-templates-button.card-templates-button-container.dark-background-hover";
+  const anchorSelector =
+    ".js-card-templates-button.card-templates-button-container.dark-background-hover";
 
   const trello = {
-      expanderSelector: ".expander-extension",
-      insertExpander: (anchor, expander) =>
-        anchor.parentNode.insertBefore(expander, anchor),
-      getBoard: (button) => button.parentNode.parentNode.parentNode,
-      getCardList: (board) => $(".list-cards", board),
-      getIcon: (button) => $("span", button),
-      isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
-      compressClass: "icon-toCompress",
-      expandClass: "icon-toExpand",
-      cardMinWidth: "248px",
+    expanderSelector: ".expander-extension",
+    insertExpander: (anchor, expander) =>
+      anchor.parentNode.insertBefore(expander, anchor),
+    getBoard: (button) => button.parentNode.parentNode.parentNode,
+    getCardList: (board) => $(".list-cards", board),
+    getIcon: (button) => $("span", button),
+    isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
+    compressClass: "icon-toCompress",
+    expandClass: "icon-toExpand",
+    cardMinWidth: "248px",
   };
 
   let isReady = await linearBackoff(() => $$(anchorSelector).length);
@@ -57,9 +58,11 @@ window.onload = async () => {
         cardList.style.display = "block";
         icon.innerHTML = EXPAND_SVG;
       } else {
+        // expand
         this.setAttribute("title", "Compress list");
 
         board.setAttribute("style", `width: 98vw;`);
+
         setTimeout(() => {
           board.scrollIntoView({
             behavior: "smooth",
@@ -67,14 +70,12 @@ window.onload = async () => {
             inline: "center",
           });
         }, 100);
-        cardList.style.display = "grid";
 
+        cardList.style.display = "grid";
         cardList.style[
           "grid-template-columns"
         ] = `repeat(auto-fill, minmax(${trello.cardMinWidth}, 1fr))`;
-
         cardList.style["grid-auto-rows"] = "min-content";
-
         cardList.style["grid-gap"] = "4px";
 
         icon.innerHTML = COMPRESS_SVG;
