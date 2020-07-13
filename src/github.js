@@ -13,9 +13,6 @@ window.onload = async () => {
   const github = {
     expanderSelector: "button",
     insertExpander: (anchor, expander) => anchor.appendChild(expander),
-    getBoard: (button) => button.parentNode.parentNode.parentNode,
-    getCardList: (board) => $(".js-project-column-cards", board),
-    getIcon: (button) => $("span", button),
     cardMinWidth: "335px",
   };
 
@@ -53,9 +50,9 @@ window.onload = async () => {
     github.insertExpander(anchor, expander);
 
     expander.onclick = function () {
-      let board = github.getBoard(this);
-      let cardList = github.getCardList(board);
-      let icon = github.getIcon(this);
+      let board = this.parentNode.parentNode.parentNode;
+      let cardList = $(".js-project-column-cards", board);
+      let icon = $("span", this);
 
       if (icon.classList.contains(CLASS_EXTENDER_ON)) {
         // compress
@@ -100,12 +97,9 @@ window.onload = async () => {
             inline: "center",
           });
         });
-
         icon.innerHTML = COMPRESS_SVG;
       }
-
-      icon.classList.toggle(github.expandClass);
-      icon.classList.toggle(github.compressClass);
+      icon.classList.toggle(CLASS_EXTENDER_ON);
     };
   });
 };
