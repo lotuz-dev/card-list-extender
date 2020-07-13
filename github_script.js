@@ -2,10 +2,10 @@ window.onload = async () => {
   const $ = queryOne;
   const $$ = queryAll;
 
+  const anchorSelector = "div.hide-sm.position-relative.p-sm-2";
+
   const strategies = {
     github: {
-      name: "github",
-      anchorSelector: "div.hide-sm.position-relative.p-sm-2",
       buttonInnerHtml: `
             <button type="button" class="float-right btn-octicon p-1 tooltipped-w hide-sm column-menu-item" style="width: 20px; height: auto; padding: 5px; border: none; background: none;">
               <span>
@@ -37,13 +37,13 @@ window.onload = async () => {
     `width: auto!important;`
   );
 
-  let isReady = await linearBackoff(() => $$(strategy.anchorSelector).length);
+  let isReady = await linearBackoff(() => $$(anchorSelector).length);
 
   if (!isReady) {
     return;
   }
 
-  let anchors = $$(strategy.anchorSelector);
+  let anchors = $$(anchorSelector);
 
   anchors.forEach((anchor) => {
     let canvas = document.createElement("div");
