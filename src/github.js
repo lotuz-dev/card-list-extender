@@ -57,7 +57,7 @@ window.onload = async () => {
       let cardList = github.getCardList(board);
       let icon = github.getIcon(this);
 
-      if (github.isCompressed(icon)) {
+      if (icon.classList.contains(CLASS_EXTENDER_ON)) {
         // compress
         this.setAttribute("title", "Expand list");
 

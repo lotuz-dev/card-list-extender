@@ -1,7 +1,13 @@
-window.onload = async () => {
-  const $ = queryOne;
-  const $$ = queryAll;
+import {
+  $,
+  $$,
+  CLASS_EXTENDER_ON,
+  EXPAND_SVG,
+  COMPRESS_SVG,
+  linearBackoff,
+} from "./board_extender.js";
 
+window.onload = async () => {
   const anchorSelector = "h3.board-title";
 
   const gitlab = {
@@ -39,7 +45,7 @@ window.onload = async () => {
       let cardList = gitlab.getCardList(board);
       let icon = gitlab.getIcon(this);
 
-      if (gitlab.isCompressed(icon)) {
+      if (icon.classList.contains(CLASS_EXTENDER_ON)) {
         // compress
         this.setAttribute("title", "Expand list");
 

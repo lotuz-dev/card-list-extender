@@ -1,7 +1,7 @@
 {
   "name": "Board Extender Browser",
   "description": "This extension will be help you to see better card of the board in full screen.",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "content_scripts": [
     {
       "matches": ["*://*.trello.com/*"],

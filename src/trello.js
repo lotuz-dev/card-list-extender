@@ -51,7 +51,7 @@ window.onload = async () => {
       let cardList = trello.getCardList(board);
       let icon = trello.getIcon(this);
 
-      if (icon.classLis.contains(CLASS_EXTENDER_ON)) {
+      if (icon.classList.contains(CLASS_EXTENDER_ON)) {
         // compress
         this.setAttribute("title", "Expand list");
 
