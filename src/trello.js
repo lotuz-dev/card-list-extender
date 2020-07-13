@@ -15,9 +15,6 @@ window.onload = async () => {
     expanderSelector: ".expander-extension",
     insertExpander: (anchor, expander) =>
       anchor.parentNode.insertBefore(expander, anchor),
-    getBoard: (button) => button.parentNode.parentNode.parentNode,
-    getCardList: (board) => $(".list-cards", board),
-    getIcon: (button) => $("span", button),
     cardMinWidth: "248px",
   };
 
@@ -47,9 +44,9 @@ window.onload = async () => {
     trello.insertExpander(anchor, expander);
 
     expander.onclick = function () {
-      let board = trello.getBoard(this);
-      let cardList = trello.getCardList(board);
-      let icon = trello.getIcon(this);
+      let board = this.parentNode.parentNode.parentNode;
+      let cardList = $(".list-cards", board);
+      let icon = $("span", this);
 
       if (icon.classList.contains(CLASS_EXTENDER_ON)) {
         // compress

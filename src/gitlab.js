@@ -13,9 +13,6 @@ window.onload = async () => {
   const gitlab = {
     expanderSelector: "button",
     insertExpander: (anchor, expander) => anchor.appendChild(expander),
-    getBoard: (button) => button.parentNode.parentNode.parentNode.parentNode,
-    getCardList: (board) => $("ul", board),
-    getIcon: (button) => $("span", button),
     cardMinWidth: "374px",
   };
 
@@ -41,9 +38,9 @@ window.onload = async () => {
     gitlab.insertExpander(anchor, expander);
 
     expander.onclick = function () {
-      let board = gitlab.getBoard(this);
-      let cardList = gitlab.getCardList(board);
-      let icon = gitlab.getIcon(this);
+      let board = this.parentNode.parentNode.parentNode.parentNode;
+      let cardList = $("ul", board);
+      let icon = $("span", this);
 
       if (icon.classList.contains(CLASS_EXTENDER_ON)) {
         // compress
@@ -85,9 +82,7 @@ window.onload = async () => {
 
         icon.innerHTML = COMPRESS_SVG;
       }
-
-      icon.classList.toggle(gitlab.expandClass);
-      icon.classList.toggle(gitlab.compressClass);
+      icon.classList.toggle(CLASS_EXTENDER_ON);
     };
   });
 };
