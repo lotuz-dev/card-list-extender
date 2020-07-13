@@ -1,12 +1,9 @@
-window.onload = () => {
+window.onload = async () => {
   const $ = queryOne;
   const $$ = queryAll;
 
-  const strategies = {
-    trello: {
-      name: "trello",
-      anchorSelector:
-        ".js-card-templates-button.card-templates-button-container.dark-background-hover",
+  const anchorSelector = ".js-card-templates-button.card-templates-button-container.dark-background-hover";
+  const trello = {
       buttonInnerHtml: `
     <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
       <a class="_2arBFfwXVxA0AM" role="button" href="#">
@@ -26,32 +23,29 @@ window.onload = () => {
       compressClass: "icon-toCompress",
       expandClass: "icon-toExpand",
       cardMinWidth: "248px",
-    },
   };
 
-  let strategy = strategies.trello;
-
-  let isReady = await linearBackoff(() => $$(strategy.anchorSelector).length);
+  let isReady = await linearBackoff(() => $$(anchorSelector).length);
 
   if (!isReady) {
     return;
   }
 
-  let anchors = $$(strategy.anchorSelector);
+  let anchors = $$(anchorSelector);
 
   anchors.forEach((anchor) => {
     let canvas = document.createElement("div");
-    canvas.innerHTML = strategy.buttonInnerHtml;
-    let expander = $(strategy.expanderSelector, canvas);
+    canvas.innerHTML = trello.buttonInnerHtml;
+    let expander = $(trello.expanderSelector, canvas);
 
-    strategy.insertExpander(anchor, expander);
+    trello.insertExpander(anchor, expander);
 
     expander.onclick = function () {
-      let board = strategy.getBoard(this);
-      let cardList = strategy.getCardList(board);
-      let icon = strategy.getIcon(this);
+      let board = trello.getBoard(this);
+      let cardList = trello.getCardList(board);
+      let icon = trello.getIcon(this);
 
-      if (strategy.isCompressed(icon)) {
+      if (trello.isCompressed(icon)) {
         // compress
         this.setAttribute("title", "Expand list");
 
@@ -75,7 +69,7 @@ window.onload = () => {
 
         cardList.style[
           "grid-template-columns"
-        ] = `repeat(auto-fill, minmax(${strategy.cardMinWidth}, 1fr))`;
+        ] = `repeat(auto-fill, minmax(${trello.cardMinWidth}, 1fr))`;
 
         cardList.style["grid-auto-rows"] = "min-content";
 
@@ -84,8 +78,8 @@ window.onload = () => {
         icon.innerHTML = COMPRESS_SVG;
       }
 
-      icon.classList.toggle(strategy.expandClass);
-      icon.classList.toggle(strategy.compressClass);
+      icon.classList.toggle(trello.expandClass);
+      icon.classList.toggle(trello.compressClass);
     };
   });
 };
