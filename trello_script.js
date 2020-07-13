@@ -3,6 +3,7 @@ window.onload = async () => {
   const $$ = queryAll;
 
   const anchorSelector = ".js-card-templates-button.card-templates-button-container.dark-background-hover";
+  
   const trello = {
       buttonInnerHtml: `
     <div class="js-card-templates-button card-templates-button-container dark-background-hover expander-extension">
