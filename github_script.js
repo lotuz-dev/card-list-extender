@@ -39,10 +39,10 @@ window.onload = async () => {
 
     canvas.innerHTML = `
     <button type="button" class="float-right btn-octicon p-1 tooltipped-w hide-sm column-menu-item" style="width: 20px; height: auto; padding: 5px; border: none; background: none;">
-    <span>
-      ${EXPAND_SVG}
-    </span>
-  </button>`;
+      <span>
+        ${EXPAND_SVG}
+      </span>
+    </button>`;
 
     let expander = $(github.expanderSelector, canvas);
 
@@ -60,6 +60,7 @@ window.onload = async () => {
         board.setAttribute("style", "");
 
         cardList.style.display = "block";
+
         Array.from(cardList.children).forEach((card) => {
           card.setAttribute("style", ``);
         });
@@ -76,6 +77,7 @@ window.onload = async () => {
               flex: 1 1 100%!important;
             `
         );
+        
         cardList.style.display = "grid";
         cardList.style[
           "grid-template-columns"
@@ -94,7 +96,7 @@ window.onload = async () => {
             inline: "center",
           });
         });
-        
+
         icon.innerHTML = COMPRESS_SVG;
       }
 
