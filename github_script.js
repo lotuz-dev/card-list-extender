@@ -4,8 +4,7 @@ window.onload = async () => {
 
   const anchorSelector = "div.hide-sm.position-relative.p-sm-2";
 
-  const strategies = {
-    github: {
+  const github = {
       buttonInnerHtml: `
             <button type="button" class="float-right btn-octicon p-1 tooltipped-w hide-sm column-menu-item" style="width: 20px; height: auto; padding: 5px; border: none; background: none;">
               <span>
@@ -21,10 +20,8 @@ window.onload = async () => {
       isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
       compressClass: "icon-toCompress",
       cardMinWidth: "335px",
-    },
   };
 
-  let strategy = strategies.github;
 
   $(".project-columns-container").setAttribute(
     "style",
@@ -47,17 +44,17 @@ window.onload = async () => {
 
   anchors.forEach((anchor) => {
     let canvas = document.createElement("div");
-    canvas.innerHTML = strategy.buttonInnerHtml;
-    let expander = $(strategy.expanderSelector, canvas);
+    canvas.innerHTML = github.buttonInnerHtml;
+    let expander = $(github.expanderSelector, canvas);
 
-    strategy.insertExpander(anchor, expander);
+    github.insertExpander(anchor, expander);
 
     expander.onclick = function () {
-      let board = strategy.getBoard(this);
-      let cardList = strategy.getCardList(board);
-      let icon = strategy.getIcon(this);
+      let board = github.getBoard(this);
+      let cardList = github.getCardList(board);
+      let icon = github.getIcon(this);
 
-      if (strategy.isCompressed(icon)) {
+      if (github.isCompressed(icon)) {
         // compress
         this.setAttribute("title", "Expand list");
 
@@ -83,7 +80,7 @@ window.onload = async () => {
         cardList.style.display = "grid";
         cardList.style[
           "grid-template-columns"
-        ] = `repeat(auto-fill, minmax(${strategy.cardMinWidth}, 1fr))`;
+        ] = `repeat(auto-fill, minmax(${github.cardMinWidth}, 1fr))`;
         cardList.style["grid-auto-rows"] = "min-content";
         cardList.style["grid-gap"] = "4px";
 
@@ -99,8 +96,8 @@ window.onload = async () => {
         icon.innerHTML = COMPRESS_SVG;
       }
 
-      icon.classList.toggle(strategy.expandClass);
-      icon.classList.toggle(strategy.compressClass);
+      icon.classList.toggle(github.expandClass);
+      icon.classList.toggle(github.compressClass);
     };
   });
 };
