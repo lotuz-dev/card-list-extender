@@ -39,7 +39,7 @@ window.onload = async () => {
     let canvas = document.createElement("div");
 
     canvas.innerHTML = `
-    <button type="button" class="float-right p-1 tooltipped-w hide-sm column-menu-item" style="width: 20px; height: auto; padding:4px 3px 3px 3px !important; border: none; background: none; color:#586069;">
+    <button type="button" class="float-right p-1 tooltipped-w hide-sm column-menu-item" style="width: 18px; height: auto; padding:4px 3px 3px 3px !important; border: none; background: none; color:#586069;">
       <span>
         ${EXPAND_SVG}
       </span>
