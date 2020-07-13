@@ -5,23 +5,15 @@ window.onload = async () => {
   const anchorSelector = "div.hide-sm.position-relative.p-sm-2";
 
   const github = {
-      buttonInnerHtml: `
-            <button type="button" class="float-right btn-octicon p-1 tooltipped-w hide-sm column-menu-item" style="width: 20px; height: auto; padding: 5px; border: none; background: none;">
-              <span>
-                ${EXPAND_SVG}
-              </span>
-            </button>
-          `,
-      expanderSelector: "button",
-      insertExpander: (anchor, expander) => anchor.appendChild(expander),
-      getBoard: (button) => button.parentNode.parentNode.parentNode,
-      getCardList: (board) => $(".js-project-column-cards", board),
-      getIcon: (button) => $("span", button),
-      isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
-      compressClass: "icon-toCompress",
-      cardMinWidth: "335px",
+    expanderSelector: "button",
+    insertExpander: (anchor, expander) => anchor.appendChild(expander),
+    getBoard: (button) => button.parentNode.parentNode.parentNode,
+    getCardList: (board) => $(".js-project-column-cards", board),
+    getIcon: (button) => $("span", button),
+    isCompressed: (icon) => icon.classList.contains("icon-toCompress"),
+    compressClass: "icon-toCompress",
+    cardMinWidth: "335px",
   };
-
 
   $(".project-columns-container").setAttribute(
     "style",
@@ -44,7 +36,14 @@ window.onload = async () => {
 
   anchors.forEach((anchor) => {
     let canvas = document.createElement("div");
-    canvas.innerHTML = github.buttonInnerHtml;
+
+    canvas.innerHTML = `
+    <button type="button" class="float-right btn-octicon p-1 tooltipped-w hide-sm column-menu-item" style="width: 20px; height: auto; padding: 5px; border: none; background: none;">
+    <span>
+      ${EXPAND_SVG}
+    </span>
+  </button>`;
+
     let expander = $(github.expanderSelector, canvas);
 
     github.insertExpander(anchor, expander);
@@ -88,11 +87,14 @@ window.onload = async () => {
           card.setAttribute("style", `margin: 0px!important;`);
         });
 
-        cardList.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "center",
+        setTimeout(() => {
+          cardList.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "center",
+          });
         });
+        
         icon.innerHTML = COMPRESS_SVG;
       }
 
