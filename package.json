@@ -4,7 +4,7 @@
   "description": "A simple extension to add a \"fullscreen\" to lists on kanban boards. Currently it works for: - Gitlab - Github - Trello",
   "scripts": {
     "start": "parcel watch src/trello.js src/gitlab.js src/github.js",
-    "build": "parcel build src/trello.js src/gitlab.js src/github.js && cp static/* dist/"
+    "build": "parcel build src/trello.js src/gitlab.js src/github.js && cp static/* dist/ && zip board-extender.zip dist/*"
   },
   "repository": {
     "type": "git",
