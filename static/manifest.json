@@ -1,0 +1,28 @@
+{
+  "name": "Card list Extender",
+  "description": "This extension will help to see each card of a kanban board in a grid.",
+  "version": "1.0.0",
+  "content_scripts": [
+    {
+      "matches": ["*://*.trello.com/*"],
+      "run_at": "document_end",
+      "js": ["trello.js"]
+    },
+    {
+      "matches": ["*://*.gitlab.com/*"],
+      "run_at": "document_end",
+      "js": ["gitlab.js"]
+    },
+    {
+      "matches": ["*://*.github.com/*"],
+      "run_at": "document_end",
+      "js": ["github.js"]
+    }
+  ],
+  "browser_action": {
+    "default_title": "Card list extender",
+    "default_icon": "logo-board-extender.png"
+  },
+  "manifest_version": 2,
+  "permissions": ["activeTab"]
+}
