@@ -32,7 +32,7 @@ window.onload = async () => {
     canvas.innerHTML = `
     <div class="js-card-templates-button card-templates-button-container  expander-extension">
       <a class="_2arBFfwXVxA0AM" role="button" href="#">
-        <span class="icon-sm icon-toExpand  dark-background-hover" style="padding: 0 5px 0 5px; width: 12px; margin-top: 5px; margin-right: 8px; cursor: pointer;">
+        <span class="icon-sm icon-toExpand  dark-background-hover" style="padding: 4px 8px; width: 12px; margin-top: 2px; margin-right: 2px; cursor: pointer;">
           ${EXPAND_SVG}
         </span>
       </a>
